@@ -119,7 +119,9 @@
       selectedOpen: false,
       events: [],
       colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
-      names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
+      names: ['こうた', 'ゆうた', 'そうた', 'ようた', '母ちゃん'],
+      plans: ['2020-1-30'],
+      startDay: '2020-2-11',
     }),
     computed: {
       title () {
@@ -192,33 +194,20 @@
 
         nativeEvent.stopPropagation()
       },
-      updateRange ({ start, end }) {
+      updateRange ({ start }) {
         const events = []
 
-        const min = new Date(`${start.date}T00:00:00`)
-        const max = new Date(`${end.date}T23:59:59`)
-        const days = (max.getTime() - min.getTime()) / 86400000
-        const eventCount = this.rnd(days, days + 20)
+                for (let i = 0; i < 180; i++) {
 
-        for (let i = 0; i < eventCount; i++) {
-          const allDay = this.rnd(0, 3) === 0
-          const firstTimestamp = this.rnd(min.getTime(), max.getTime())
-          const first = new Date(firstTimestamp - (firstTimestamp % 900000))
-          const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
-          const second = new Date(first.getTime() + secondTimestamp)
-
-          events.push({
-            name: this.names[this.rnd(0, this.names.length - 1)],
-            start: this.formatDate(first, !allDay),
-            end: this.formatDate(second, !allDay),
-            color: this.colors[this.rnd(0, this.colors.length - 1)],
-          })
-        }
-
-        this.start = start
-        this.end = end
-        this.events = events
-      },
+                  events.push({
+                    name: this.names[this.rnd(0, this.names.length - 1)],
+                    start: this.startDay,
+                    color: this.colors[this.rnd(0, this.colors.length - 1)],
+                  })
+                }
+          this.start = start
+          this.events = events
+        },
       nth (d) {
         return d > 3 && d < 21
           ? 'th'

@@ -38,7 +38,7 @@
           ようこそ、{{username}} さん
         </div>
         <li>
-          <router-link to="/ai">AIアプリ</router-link>
+          <router-link to="/calendar">カレンダー</router-link>
         </li>
         <li>
           <router-link to="/chat">チャットアプリ</router-link>
